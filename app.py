@@ -84,8 +84,10 @@ def main():
             response=qa_chain.invoke({'query':prompt})
 
             result=response["result"]
+            st.chat_message('assistant').markdown(result)
             source_documents=response["source_documents"]
-            result_to_show=result+"\nSource Docs:\n"+str(source_documents)
+            result_to_show="\nSource Docs:\n\n"+str(source_documents)
+            
             st.chat_message('assistant').markdown(result_to_show)
             st.session_state.messages.append({'role':'assistant', 'content': result_to_show})
 
